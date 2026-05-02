@@ -1,0 +1,6 @@
+INSERT INTO usuarias (nombre, apellido, telefono, email)
+VALUES 
+('Ana', 'García', '123456789', 'ana@email.com'),
+('María', 'López', '987654321', 'maria@email.com'),
+('Lucía', 'Martínez', '555444333', 'lucia@email.com'),
+('Elena', 'Sánchez', '111222333', 'elena@email.com');
