@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -23,10 +20,7 @@ public class Main {
                     listarRefugiadas();break;
                 case 4:
                     System.out.println("Elegiste opción 4");
-                    atencionPsicologica();break;
-                case 5:
-                    System.out.println("Elegiste opción 5");
-                    asistenciaJuridica();break;
+                    servicios();break;
                 default:
                     System.out.println("No existe esa opcion");break;
             }
@@ -61,11 +55,9 @@ public class Main {
         System.out.println("1.Añadir refugiada");
         System.out.println("2.Eliminar refugiada");
         System.out.println("3.Listar refugiadas");
-        System.out.println("4.Atención psicológica");
-        System.out.println("5.Asistencia jurídica");
-        System.out.println("Elige tu opcion");
+        System.out.println("4.Servicios");
     }
-    public static void anadirRefugiada(){
+    public static void anadirRefugiada() throws SQLException {
         String nombre, apellido, telefono, email;
         Scanner scn= new Scanner(System.in);
         System.out.println("Introduce el nombre");
@@ -78,29 +70,90 @@ public class Main {
         email= scn.next();
         System.out.println("Has introducido los siguientes datos: " +nombre+ " "+apellido+" "+telefono+ " "+email+ ".");
 
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/refugio",
+                "root",
+                ""
+        );
+
+        String sql = "INSERT INTO usuarias (nombre, apellido, telefono, email, creado_en) VALUES (?, ?, ?, ?, NOW())";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, nombre);
+        ps.setString(2, apellido);
+        ps.setString(3, telefono);
+        ps.setString(4, email);
+
+        ps.executeUpdate();
+        ps.close();
+
     }
-    public static void eliminarRefugiada(){
-        String nombre, apellido, telefono, email;
+    public static void eliminarRefugiada() throws SQLException {
         int id;
         Scanner scn= new Scanner(System.in);
-        System.out.println("Introduce los datos de la refugiada que quieres eliminar");
-        nombre=scn.next();
-        apellido=scn.next();
-        telefono=scn.next();
-        email=scn.next();
+        System.out.println("Introduce el id de la refugiada que quieres eliminar");
         id=scn.nextInt();
+
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/refugio",
+                "root",
+                ""
+        );
+        String sql = "DELETE FROM usuarias WHERE id = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            int filas = ps.executeUpdate();
+
+            if (filas > 0) {
+                System.out.println("✅ Refugiada eliminada correctamente");
+            } else {
+                System.out.println("⚠️ No existe una refugiada con ese ID");
+            }
+
+
     }
-    public static void listarRefugiadas(){
+    public static void listarRefugiadas() throws SQLException {
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/refugio",
+                "root",
+                ""
+        );
+
+        String sql = "SELECT id, nombre, apellido, telefono, email, creado_en FROM usuarias";
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+            System.out.println("📋 LISTADO DE REFUGIADAS:");
+            System.out.println("----------------------------------");
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                String telefono = rs.getString("telefono");
+                String email = rs.getString("email");
+                String creado = rs.getString("creado_en");
+
+                System.out.println(
+                        id + " | " +
+                                nombre + " " + apellido + " | " +
+                                telefono + " | " +
+                                email + " | " +
+                                creado
+                );
+            }
+
         String nombre, apellido, telefono, email;
         int id;
         System.out.println("Esta es la lista de las refugiadas del centro");
     }
-    public static void atencionPsicologica(){
-        System.out.println("Número de teléfono 24h. 655633622");
-    }
-    public static void asistenciaJuridica(){
-        System.out.println("Número de teléfono 24h. 644677688");
+    public static void servicios(){
+        System.out.println("Número de teléfono atención psicológica 24h. 655633622");
+        System.out.println("Número de teléfono asistencia jurídica 24h. 644677688");
     }
 }
+
 
 
