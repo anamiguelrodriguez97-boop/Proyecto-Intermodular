@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="red_refugios">
+        <xs:complexType>
+        <xs:sequence>
+            <xs:element name="centro_esperanza" type="xs:string"/>
+            <xs:element name="direccion_oculta" type="xs:boolean"/>
+            <xs:element name="telefono" type="xs:string"/>
+            <xs:element name="correo_electronico" type="xs:string"/>
+            <xs:element name="capacidad">
+            <xs:complexType>
+                <xs:sequence>
+                <xs:element name="plazas_adultos" type="xs:int"/>
+                <xs:element name="plazas_menores" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="caracteristicas">
+            <xs:complexType>
+                <xs:sequence>
+                <xs:element name="admite_menores" type="xs:boolean"/>
+                <xs:element name="admite_mascotas" type="xs:boolean"/>
+                <xs:element name="movilidad_reducida" type="xs:boolean"/>
+                <xs:element name="boton_salida_rapida" type="xs:boolean"/>
+                <xs:element name="aviso_rastreo" type="xs:boolean"/>
+                <xs:element name="idiomas_atencion">
+                    <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="idioma" type="xs:string" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="servicios_adicionales">
+            <xs:complexType>
+                <xs:sequence>
+                <xs:element name="servicio" type="xs:string" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            <xs:element name="colaboracion_organizaciones">
+            <xs:complexType>
+                <xs:sequence>
+                <xs:element name="organizacion" type="xs:string" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            </xs:element>

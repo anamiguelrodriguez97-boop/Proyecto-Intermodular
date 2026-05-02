@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<centro de acogida id="C.A.001" seguridad="alta" privacidad="confidencial">
+    <nombre>"El Refugio"</nombre>
+    <direccion_oculta>true</direccion_oculta>
+    <telefono>+34 444 444 444</telefono>
+    <correo_electronico>info@elrefugio.org</correo_electronico>
+
+    <capacidad>
+    <plazas_adultos>100</plazas_adultos>
+    <plazas_menores>50</plazas_menores>
+    </capacidad>
+
+    <caracteristicas>  
+    <admite_menores>true</admite_menores>
+     <admite_mascotas>true</admite_mascotas>
+    <movilidad_reducida>true</movilidad_reducida>
+    <boton_salida_rapida>true</boton_salida_rapida>
+    <aviso_rastreo>true</aviso_rastreo>
+       <idiomas_atencion>
+        <idioma>Español</idioma>
+        <idioma>Inglés</idioma>
+        <idioma>Francés</idioma>
+        <idioma>Árabe</idioma>
+        <idioma>Rumano</idioma>
+        <idioma>Ucraniano</idioma>
+        <idioma>Suajili</idioma>
+    </idiomas_atencion>
+    </caracteristicas>
+
+    <servicios_adicionales>
+        <servicio>Asesoramiento legal</servicio>
+        <servicio>Apoyo psicológico</servicio>
+        <servicio>Programas de reintegración social</servicio>
+    </servicios_adicionales>
+    
+    
+    <colaboracion_organizaciones>
+        <organizacion>Organización Mundial de la Salud</organizacion>
+        <organizacion>Amnistía Internacional</organizacion>
+        <organizacion>Cruz Roja</organizacion>
+        <organizacion>Save the Children</organizacion>
+        <organizacion>ACNUR</organizacion>
+    </colaboracion_organizaciones>
+    
+    <ultima_actualizacion>2024-06-01</ultima_actualizacion>
+    <nivel_ocupacion>75</nivel_ocupacion>
+    
